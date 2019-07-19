@@ -1,3 +1,3 @@
 # chadpaste
 
-chadpaste.com
+[chadpaste.com](chadpaste.com)
