@@ -1,11 +1,12 @@
 function S3Upload(file) {
 	$.ajax({
-		url: 'https://wai3srveb7.execute-api.us-east-1.amazonaws.com/api',
+		url: 'https://1znlhxx5lb.execute-api.us-east-1.amazonaws.com/api/',
 		type: 'POST',
 		contentType: 'application/json',
 		dataType: 'json',
 		data: JSON.stringify({
-			'type': file['type']
+			'type': file['type'],
+			'name': file['name']
 		}),
 		success: function(result) {
 			console.log(result);

@@ -16,11 +16,7 @@ def randomString(stringLength=10):
 @app.route('/', methods=['POST'], cors=True)
 def get_presigned_url():
     file_spec = app.current_request.json_body
-    if file_spec['type'] == 'text/x-python-script':
-        name = randomString(3) + '.py'
-        file_spec['type'] = 'text/x-python'
-    else:
-        name = randomString(3) + mimetypes.guess_extension(file_spec['type'])
+    name = randomString(3) + '.' + file_spec['name'].split('.')[1]
     return {'url': s3_client.generate_presigned_url(ClientMethod='put_object',
                                                     Params={'Bucket': 'www.chadpaste.com',
                                                             'Key': 'images/' + name,
