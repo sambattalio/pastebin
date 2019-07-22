@@ -1,1 +1,3 @@
-# image_host
+# chadpaste
+
+[chadpaste.com](http://chadpaste.com)
