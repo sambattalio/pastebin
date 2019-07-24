@@ -17,7 +17,7 @@ function S3Upload(file) {
 				processData: false,
 				data: file,
 				success: function() {
-					window.location.href = 'images/' + result['name'];   
+					window.location.href = '?' + result['name'];   
 				}
 			});
 		}
@@ -29,6 +29,24 @@ function button_upload(ev) {
   S3Upload(ev.target.files[0]);
 }
 
+function get_query() {
+        var query = window.location.search.substring(1);
+	var img   = new Image();
+	if (query) {
+		console.log('f/' + query);
+		img.src = 'f/' + query;
+		img.id  = 'uploaded';
+		document.body.appendChild(img);
+		return true;
+	}
+	return false;
+}
+window.onload = function() {
+	if (get_query()) {
+		$('#box').remove();
+		$('#button').remove();
+	}
+};
 
 window.addEventListener("dragover",function(e){
   e = e || event;

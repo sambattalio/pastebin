@@ -33,13 +33,12 @@
   </head>
   <body>
     <marquee behavior="alternate"><h1>ChadPaste</h1></marquee>
-    <input type="file" name="pic" accept="image/*" onchange="button_upload(event)">
-    <div id="output" style="min-height: 200px; white-space: pre; border: 1px solid black;"
-         ondragenter="document.getElementById('output').textContent = ''; event.stopPropagation(); event.preventDefault();"
+    <input id='button' type="file" name="pic" accept="image/*" onchange="button_upload(event)">
+    <div id="box" style="min-height: 200px; white-space: pre; border: 1px solid black;"
+         ondragenter="document.getElementById('box').textContent = ''; event.stopPropagation(); event.preventDefault();"
          ondragover="event.stopPropagation(); event.preventDefault();"
          ondrop="event.stopPropagation(); event.preventDefault(); doDrop(event);">
          DROP FILES HERE FROM FINDER OR EXPLORER
     </div>
-    <img src= "pikachu.gif"/> 
   </body>
 </html>
