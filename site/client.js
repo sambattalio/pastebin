@@ -17,7 +17,7 @@ function S3Upload(file) {
 				processData: false,
 				data: file,
 				success: function() {
-					window.location.href = '?' + result['name'];   
+					window.location.href = '?' + result['name'];
 				}
 			});
 		}
@@ -31,30 +31,38 @@ function button_upload(ev) {
 
 function get_query() {
   var query = window.location.search.substring(1);
-  var file_location = 'f/' + query;
-  // Handle Images
-  if (query.endsWith("jpg") || query.endsWith("jpeg") || query.endsWith("png")) {
-    var img   = new Image();
-    if (query) {
-      console.log(file_location);
-      img.src = file_location;
-      img.id  = 'uploaded';
-      document.body.appendChild(img);
+
+  // If there was some kind of query string
+  if (query) {
+    var file_location = 'f/' + query;
+    // Handle Images
+    if (query.endsWith("jpg") || query.endsWith("jpeg") || query.endsWith("png")) {
+      var img   = new Image();
+      if (query) {
+        console.log(file_location);
+        img.src = file_location;
+        img.id  = 'uploaded';
+        document.body.appendChild(img);
+        return true;
+      }
+    } else {
+      // Assume it is text of some kind
+      fetch(file_location)
+        .then(response => response.text())
+        .then(text => {
+          console.log(text);
+          var pre = document.createElement("pre");
+          var code = document.createElement("code");
+          var newDiv = document.createElement("div");
+          newDiv.style = "white-space: pre-wrap";
+          var newContent = document.createTextNode(text);
+          code.appendChild(newContent);
+          pre.appendChild(code);
+          newDiv.appendChild(pre);
+          document.body.appendChild(newDiv);
+        })
       return true;
     }
-  } else {
-    // Assume it is text of some kind
-    fetch(file_location)
-      .then(response => response.text())
-      .then(text => {
-        console.log(text);
-        var newDiv = document.createElement("div"); 
-        newDiv.style = "white-space: pre-wrap";
-        var newContent = document.createTextNode(text); 
-        newDiv.appendChild(newContent);
-        document.body.appendChild(newDiv);
-      })
-    return true;
   }
 	return false;
 }
