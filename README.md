@@ -16,3 +16,8 @@ It's fairly simple, but was fun to make and use.
 I think the next step is **definitely** a frontend overhall haha.
 
 Other than that, I would really like to change the POST to only require one call, and delegate the upload to s3 to the lambda.
+
+
+# Contributing
+
+Please read CONTRIBUTING.md to learn how to contribute.
