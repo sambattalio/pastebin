@@ -40,8 +40,9 @@ function get_query() {
       var img   = new Image();
       if (query) {
         console.log(file_location);
-        img.src = file_location;
-        img.id  = 'uploaded';
+        img.src   = file_location;
+        img.id    = 'uploaded';
+	img.width = '100%';
         document.body.appendChild(img);
         return true;
       }
