@@ -29,16 +29,20 @@
   		height: 100px;
 	}
 
+        #test {
+            width: 30px;
+        }
     </style>
   </head>
   <body>
     <marquee behavior="alternate"><h1>ChadPaste</h1></marquee>
-    <input id='button' type="file" name="pic" accept="image/*" onchange="button_upload(event)">
+    <input id='button' type="file" name="pic" onchange="button_upload(event)">
     <div id="box" style="min-height: 200px; white-space: pre; border: 1px solid black;"
          ondragenter="document.getElementById('box').textContent = ''; event.stopPropagation(); event.preventDefault();"
          ondragover="event.stopPropagation(); event.preventDefault();"
          ondrop="event.stopPropagation(); event.preventDefault(); doDrop(event);">
          DROP FILES HERE FROM FINDER OR EXPLORER
     </div>
+    <div id="content" style="width: 100%"> </div>
   </body>
 </html>

@@ -16,11 +16,20 @@ def randomString(stringLength=10):
 @app.route('/', methods=['POST'], cors=True)
 def get_presigned_url():
     file_spec = app.current_request.json_body
-    name = randomString(3) + '.' + file_spec['name'].split('.')[1]
+    name = randomString() + '.' + file_spec['name'].split('.')[1]
     return {'url': s3_client.generate_presigned_url(ClientMethod='put_object',
-                                                    Params={'Bucket': 'www.chadpaste.com',
-                                                            'Key': 'images/' + name,
+                                                    Params={'Bucket': 'chadpaste.com',
+                                                            'Key': 'f/' + name,
                                                             'ContentType': file_spec['type']
                                                             },
-                                                    ExpiresIn=1000),
+                                                    ExpiresIn=20),
             'name': name}
+
+
+@app.route('/test', methods=['POST'], cors=True)
+def post_image():
+    f    = app.current_request.raw_body
+    mime = magic.from_buffer(f, mime=True)
+
+    #s3_client.put_object(Body=f, Bucket='chadpaste.com', Key='f/'+name)
+    return {'test': magic.from_buffer(f, mime=True)}
